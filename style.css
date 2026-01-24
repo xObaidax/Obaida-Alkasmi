@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  /* إزالة الفراغ الخارجي الافتراضي للمتصفح */
+
+  min-height: 100vh;
+  /* جعل ارتفاع الصفحة يساوي ارتفاع الشاشة */
+
+  display: flex;
+  /* تفعيل نظام flex لترتيب العناصر */
+
+  flex-direction: column;
+  /* ترتيب العناصر تحت بعضها عموديا */
+
+  align-items: center;
+  /* توسيط العناصر أفقيا */
+
+  justify-content: center;
+  /* توسيط العناصر عموديا */
+
+  font-family: Arial, sans-serif;
+  /* تحديد نوع الخط */
+
+  background: #b1e0ff;
+  /* لون خلفية الصفحة */
+
+  color: #000000;
+  /* لون النص */
+
+  text-align: center;
+  /* توسيط النص */
+
+  padding: 24px;
+  /* مسافة داخلية حول المحتوى */
+}
+
+h1 {
+  font-size: 36px;
+  /* تكبير حجم العنوان */
+
+  margin-bottom: 16px;
+  /* مسافة تحت العنوان */
+}
+
+p {
+  max-width: 520px;
+  /* تحديد أقصى عرض للنص */
+
+  line-height: 2;
+  /* زيادة المسافة بين الأسطر */
+
+  margin-bottom: 12px;
+  /* مسافة أسفل الفقرة */
+}
+
+button {
+  padding: 1px 18px;
+  /* مسافة داخلية للزر */
+
+  border: 0;
+  /* إزالة الإطار */
+
+  border-radius: 10px;
+  /* تدوير زوايا الزر */
+
+  background: #a0a0a0;
+  /* لون خلفية الزر */
+
+  color: #ffffff;
+  /* لون نص الزر */
+
+  font-size: 18px;
+  /* حجم نص الزر */
+
+  cursor: pointer;
+  /* تغيير شكل المؤشر عند المرور */
+}
+
+button:hover {
+  opacity: 0.9;
+  /* تقليل الشفافية عند المرور */
+}
+
+@media (max-width: 480px) {
+  /* قواعد خاصة بالشاشات الصغيرة مثل الهاتف */
+
+  body {
+    padding: 16px;
+    /* تقليل المسافة الداخلية في الهاتف */
+  }
+
+  h1 {
+    font-size: 32px;
+    /* تصغير العنوان ليناسب الهاتف */
+  }
+
+  p {
+    font-size: 15px;
+    /* تصغير نص الفقرات قليلا */
+  }
+}
+
+.todo {
+  margin-top: 24px;
+  /* مسافة فوق قسم Todo */
+}
+
+ul {
+  list-style: none;
+  /* إزالة النقاط */
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffd0d0;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+li span {
+  flex: 1;
+  text-align: left;
+}
+
+li button {
+  background: #ff0000;
+  color: #ffffff;
+  border: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+li button:hover {
+  opacity: 0.85;
+}
+
+.api img {
+  display: block;
+  /* يجعل الصورة سطر لوحدها */
+
+  margin-top: 5px;
+  /* مسافة فوق الصورة */
+}
