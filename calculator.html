@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculatrice</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- نفس ملف CSS للموقع كله -->
+  </head>
+
+  <body>
+    <!-- بداية محتوى الصفحة -->
+
+    <div class="calc-page">
+      <!-- خلفية صفحة الآلة وتوسيطها -->
+
+      <div class="calc-shell">
+        <!-- جسم الآلة الزجاجي -->
+
+        <div class="calc-top">
+  <a class="back-link" href="index.html">Retour</a>
+  <div class="calc-title">Calculatrice</div>
+</div>
+
+
+
+        <input
+          id="calcDisplay"
+          class="calc-display"
+          type="text"
+          value="0"
+          readonly
+        />
+        <!-- شاشة عرض الأرقام -->
+
+        <div class="calc-grid">
+          <button class="calc-btn gray" data-v="AC">AC</button>
+          <!-- مسح -->
+
+          <button class="calc-btn gray" data-v="+/-">+/-</button>
+          <!-- تغيير إشارة الرقم -->
+
+          <button class="calc-btn gray" data-v="%">%</button>
+          <!-- نسبة -->
+
+          <button class="calc-btn op" data-v="/">÷</button>
+          <!-- قسمة -->
+
+          <button class="calc-btn" data-v="7">7</button>
+          <button class="calc-btn" data-v="8">8</button>
+          <button class="calc-btn" data-v="9">9</button>
+          <button class="calc-btn op" data-v="*">×</button>
+
+          <button class="calc-btn" data-v="4">4</button>
+          <button class="calc-btn" data-v="5">5</button>
+          <button class="calc-btn" data-v="6">6</button>
+          <button class="calc-btn op" data-v="-">−</button>
+
+          <button class="calc-btn" data-v="1">1</button>
+          <button class="calc-btn" data-v="2">2</button>
+          <button class="calc-btn" data-v="3">3</button>
+          <button class="calc-btn op" data-v="+">+</button>
+
+          <button class="calc-btn zero" data-v="0">0</button>
+          <!-- صفر عريض -->
+
+          <button class="calc-btn" data-v=".">.</button>
+          <!-- فاصلة -->
+
+          <button class="calc-btn op" data-v="=">=</button>
+          <!-- يساوي -->
+        </div>
+      </div>
+    </div>
+
+    <script src="calculator.js"></script>
+    <!-- ملف JavaScript الخاص بالآلة الحاسبة فقط -->
+  </body>
+</html>

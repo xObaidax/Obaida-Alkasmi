@@ -1,4 +1,4 @@
-console.log("JS OK");
+ console.log("JS OK");
 /* اختبار أن JavaScript شغال */
 
 const taskInput = document.getElementById("taskInput");
@@ -147,4 +147,23 @@ if (photoBtn && photo && photoStatus) {
     photo.src = url;
     /* بدء تحميل الصورة */
   });
+}
+const splash = document.getElementById("splash");
+/* نأخذ عنصر شاشة الترحيب */
+
+if (splash) {
+  setTimeout(() => {
+  splash.classList.add("flash");
+  /* وميض أبيض يغطي الشاشة */
+
+  setTimeout(() => {
+    splash.classList.add("fade");
+    /* يبدأ التلاشي */
+
+    setTimeout(() => {
+      splash.classList.add("hide");
+      /* إخفاء نهائي */
+    }, 800);
+  }, 250);
+}, 4000);
 }
