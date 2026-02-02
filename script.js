@@ -1,169 +1,107 @@
- console.log("JS OK");
-/* اختبار أن JavaScript شغال */
+// script.js
+const splash = document.getElementById("splash"); /* شاشة الترحيب */
+const taskInput = document.getElementById("taskInput"); /* إدخال المهمة */
+const addBtn = document.getElementById("addBtn"); /* زر إضافة */
+const taskList = document.getElementById("taskList"); /* قائمة المهام */
+const badge = document.getElementById("countBadge"); /* شارة العدد */
 
-const taskInput = document.getElementById("taskInput");
-/* نأخذ حقل الكتابة من الصفحة */
+const jokeBtn = document.getElementById("jokeBtn"); /* زر تحميل صورة */
+const photo = document.getElementById("photo"); /* عنصر الصورة */
+const photoStatus = document.getElementById("photoStatus"); /* حالة الصورة */
 
-const addBtn = document.getElementById("addBtn");
-/* نأخذ زر الإضافة من الصفحة */
+/* تشغيل شاشة الترحيب ببطء */
+window.addEventListener("load", () => { /* عند تحميل الصفحة */
+  if(!splash) return; /* حماية */
 
-const taskList = document.getElementById("taskList");
-/* نأخذ القائمة التي ستظهر فيها المهام */
+  const stayTime = 2200; /* مدة بقاء Bienvenue قبل التلاشي */
+  const flashTime = 220; /* مدة الوميض */
+  const fadeTime = 2500; /* لازم تطابق مدة transition في CSS */
 
-const photoBtn = document.getElementById("jokeBtn");
-/* زر جلب الصورة. نفس id الموجود في HTML */
+  setTimeout(() => { /* انتظار قبل الوميض */
+    splash.classList.add("flash"); /* وميض */
 
-const photo = document.getElementById("photo");
-/* عنصر الصورة */
+    setTimeout(() => { /* إيقاف الوميض */
+      splash.classList.remove("flash"); /* إلغاء الوميض */
+      splash.classList.add("fade"); /* بدء التلاشي */
 
-const photoStatus = document.getElementById("photoStatus");
-/* نص الحالة */
+      setTimeout(() => { /* بعد انتهاء التلاشي */
+        splash.classList.add("hide"); /* إخفاء نهائي */
+      }, fadeTime + 100); /* هامش بسيط */
+    }, flashTime); /* مدة الوميض */
+  }, stayTime); /* مدة البقاء */
+}); /* نهاية */
 
-/* دالة: تضيف مهمة للواجهة */
-function addTaskToUI(text) {
-  const li = document.createElement("li");
-  /* عنصر مهمة داخل القائمة */
+/* تحديث شارة العدد */
+function updateBadge(){ /* دالة */
+  if(!badge || !taskList) return; /* حماية */
+  badge.textContent = String(taskList.children.length); /* عدد li */
+} /* نهاية */
 
-  const span = document.createElement("span");
-  /* عنصر لنص المهمة */
+/* إنشاء عنصر مهمة */
+function addTaskToUI(text){ /* دالة */
+  if(!taskList) return; /* حماية */
 
-  span.textContent = text;
-  /* وضع نص المهمة */
+  const li = document.createElement("li"); /* عنصر li */
 
-  const delBtn = document.createElement("button");
-  /* زر حذف */
+  const span = document.createElement("span"); /* نص */
+  span.textContent = text; /* وضع النص */
 
-  delBtn.textContent = "Supprimer";
-  /* نص زر الحذف */
+  const del = document.createElement("button"); /* زر حذف */
+  del.textContent = "Supprimer"; /* نص زر */
+  del.addEventListener("click", () => { /* حدث حذف */
+    li.remove(); /* حذف */
+    updateBadge(); /* تحديث */
+  }); /* نهاية */
 
-  delBtn.addEventListener("click", () => {
-    li.remove();
-    /* حذف المهمة من الصفحة */
-    saveTasks();
-    /* حفظ بعد الحذف */
-  });
+  li.appendChild(span); /* إضافة النص */
+  li.appendChild(del); /* إضافة الزر */
+  taskList.appendChild(li); /* إضافة للقائمة */
 
-  li.appendChild(span);
-  /* إضافة النص داخل li */
+  updateBadge(); /* تحديث */
+} /* نهاية */
 
-  li.appendChild(delBtn);
-  /* إضافة زر الحذف داخل li */
+/* إضافة مهمة */
+if(addBtn){ /* حماية */
+  addBtn.addEventListener("click", () => { /* حدث */
+    if(!taskInput) return; /* حماية */
 
-  taskList.appendChild(li);
-  /* إضافة المهمة إلى القائمة */
-}
+    const text = taskInput.value.trim(); /* أخذ النص */
+    if(text === "") return; /* منع فراغ */
 
-/* دالة: تحفظ كل المهام في LocalStorage */
-function saveTasks() {
-  const items = [];
-  /* مصفوفة لتجميع المهام */
+    addTaskToUI(text); /* إضافة */
+    taskInput.value = ""; /* تفريغ */
+    taskInput.focus(); /* رجوع للمؤشر */
+  }); /* نهاية */
+} /* نهاية */
 
-  for (const li of taskList.querySelectorAll("li")) {
-    const text = li.querySelector("span").textContent.trim();
-    /* أخذ نص المهمة من span */
+/* Enter لإضافة مهمة */
+if(taskInput){ /* حماية */
+  taskInput.addEventListener("keydown", (e) => { /* حدث */
+    if(e.key === "Enter"){ /* لو Enter */
+      if(addBtn) addBtn.click(); /* نفذ إضافة */
+    } /* نهاية */
+  }); /* نهاية */
+} /* نهاية */
 
-    items.push(text);
-    /* إضافة النص للمصفوفة */
-  }
+/* تحميل صورة عشوائية */
+function loadPhoto(){ /* دالة */
+  if(!photo || !photoStatus) return; /* حماية */
 
-  localStorage.setItem("tasks", JSON.stringify(items));
-  /* حفظ المصفوفة باسم tasks */
-}
+  photoStatus.textContent = "Chargement..."; /* حالة */
+  const url = "https://picsum.photos/500/350?random=" + Date.now(); /* رابط */
+  photo.src = url; /* وضع الرابط */
 
-/* دالة: تحمل المهام عند فتح الصفحة */
-function loadTasks() {
-  const raw = localStorage.getItem("tasks");
-  /* قراءة البيانات المخزنة */
+  photo.onload = () => { /* نجاح */
+    photoStatus.textContent = "OK"; /* حالة */
+  }; /* نهاية */
 
-  if (!raw) return;
-  /* لا يوجد مهام مخزنة */
+  photo.onerror = () => { /* فشل */
+    photoStatus.textContent = "Erreur"; /* حالة */
+  }; /* نهاية */
+} /* نهاية */
 
-  const items = JSON.parse(raw);
-  /* تحويل النص إلى مصفوفة */
+if(jokeBtn){ /* حماية */
+  jokeBtn.addEventListener("click", loadPhoto); /* حدث */
+} /* نهاية */
 
-  for (const text of items) {
-    addTaskToUI(text);
-    /* عرض كل مهمة */
-  }
-}
-
-/* حدث: إضافة مهمة عند الضغط على الزر */
-addBtn.addEventListener("click", () => {
-  const text = taskInput.value.trim();
-  /* أخذ النص مع حذف الفراغات */
-
-  if (text === "") return;
-  /* لا نضيف مهمة فارغة */
-
-  addTaskToUI(text);
-  /* إضافة للواجهة */
-
-  saveTasks();
-  /* حفظ بعد الإضافة */
-
-  taskInput.value = "";
-  /* تفريغ حقل الكتابة */
-});
-
-/* حدث: إضافة مهمة عند الضغط Enter داخل الحقل */
-taskInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    addBtn.click();
-    /* نفس عمل زر الإضافة */
-  }
-});
-
-loadTasks();
-/* عند فتح الصفحة. عرض المهام المخزنة */
-
-/* صور: جلب صورة عشوائية مع حالة تحميل وخطأ */
-if (photoBtn && photo && photoStatus) {
-  photoBtn.addEventListener("click", () => {
-    photoStatus.textContent = "Chargement...";
-    /* رسالة تحميل */
-
-    const w = 800;
-    /* عرض الصورة */
-
-    const h = 500;
-    /* ارتفاع الصورة */
-
-    const t = Date.now();
-    /* رقم لمنع الكاش */
-
-    const url = "https://picsum.photos/" + w + "/" + h + "?random=" + t;
-    /* رابط صورة عشوائية */
-
-    photo.onload = () => {
-      photoStatus.textContent = "";
-      /* عند نجاح التحميل نخفي الرسالة */
-    };
-
-    photo.onerror = () => {
-      photoStatus.textContent = "Erreur de chargement.";
-      /* عند فشل التحميل نظهر خطأ */
-    };
-
-    photo.src = url;
-    /* بدء تحميل الصورة */
-  });
-}
-const splash = document.getElementById("splash");
-/* نأخذ عنصر شاشة الترحيب */
-
-if (splash) {
-  setTimeout(() => {
-  splash.classList.add("flash");
-  /* وميض أبيض يغطي الشاشة */
-
-  setTimeout(() => {
-    splash.classList.add("fade");
-    /* يبدأ التلاشي */
-
-    setTimeout(() => {
-      splash.classList.add("hide");
-      /* إخفاء نهائي */
-    }, 800);
-  }, 250);
-}, 4000);
-}
+updateBadge(); /* تحديث أولي */

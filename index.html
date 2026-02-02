@@ -1,57 +1,80 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Obaida site</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<!-- index.html -->
+<!DOCTYPE html> <!-- نوع الملف -->
+<html lang="fr"> <!-- لغة الصفحة -->
+  <head> <!-- رأس الصفحة -->
+    <meta charset="UTF-8" /> <!-- ترميز -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- هاتف -->
+    <title>Obaida site</title> <!-- عنوان -->
+    <link rel="stylesheet" href="style.css" /> <!-- ربط CSS -->
+  </head> <!-- نهاية الرأس -->
 
-  <body class="home">
+  <body class="home"> <!-- جسم الصفحة -->
 
-  <div id="splash" class="splash">
-  <p class="splash-text">Bienvenue</p>
-  <!-- نص الترحيب الذي يظهر عند فتح الموقع -->
-</div>
+    <div id="splash" class="splash"> <!-- شاشة ترحيب -->
+      <p class="splash-text">Bienvenue</p> <!-- نص -->
+      <div class="splash-sub"></div> <!-- سطر صغير -->
+    </div> <!-- نهاية splash -->
 
-<h1>𝓞𝓑𝓐𝓘𝓓𝓐</h1>
+    <div class="bg-blobs" aria-hidden="true"> <!-- ديكور خلفية -->
+      <span class="blob b1"></span> <!-- شكل -->
+      <span class="blob b2"></span> <!-- شكل -->
+      <span class="blob b3"></span> <!-- شكل -->
+    </div> <!-- نهاية الخلفية -->
 
+    <main class="page"> <!-- حاوية المحتوى -->
 
-    <p>
-     Je suis intéressé par le domaine du développement d’applications.
-J’apprends la programmation en autodidacte et je travaille constamment à améliorer mon niveau.
-Je me concentre sur la conception d’interfaces utilisateur simples et fonctionnelles.
-Je travaille actuellement sur la création de mon propre site, avec une approche différente des sites existants aujourd’hui.
-    </p>
+      <header class="hero"> <!-- قسم العنوان -->
+        <h1>𝓞𝓑𝓐𝓘𝓓𝓐</h1> <!-- عنوان -->
+        <p class="subtitle"></p> <!-- وصف -->
+      </header> <!-- نهاية hero -->
 
-    <div class="todo">
-      <h2>NOTES</h2>
+      <section class="card about"> <!-- كرت نص -->
+        <h2 class="section-title"></h2> <!-- عنوان -->
+        <p> <!-- فقرة -->
+          Je suis intéressé par le domaine du développement d’applications.
+          J’apprends la programmation en autodidacte et je travaille constamment à améliorer mon niveau.
+          Je me concentre sur la conception d’interfaces utilisateur simples et fonctionnelles.
+          Je travaille actuellement sur la création de mon propre site, avec une approche différente des sites existants aujourd’hui.
+        </p> <!-- نهاية الفقرة -->
+      </section> <!-- نهاية الكرت -->
 
-      <input id="taskInput" type="text" placeholder="Écris une tâche..." />
+      <section class="card todo"> <!-- كرت المهام -->
+        <div class="card-head"> <!-- رأس -->
+          <h2 class="section-title">NOTES</h2> <!-- عنوان -->
+          <span class="badge" id="countBadge">0</span> <!-- عدد -->
+        </div> <!-- نهاية الرأس -->
 
-      <button id="addBtn">Ajouter</button>
+        <div class="todo-row"> <!-- صف الإدخال -->
+          <input id="taskInput" type="text" placeholder="Écris une tâche..." /> <!-- إدخال -->
+          <button id="addBtn" class="btn-primary">Ajouter</button> <!-- زر -->
+        </div> <!-- نهاية الصف -->
 
-      <ul id="taskList"></ul>
-    </div>
+        <ul id="taskList" class="task-list"></ul> <!-- قائمة -->
+      </section> <!-- نهاية todo -->
 
-    <div class="api">
-      <h2></h2>
+      <section class="card api"> <!-- كرت الصورة -->
+        <div class="card-head"> <!-- رأس -->
+          <h2 class="section-title">Image</h2> <!-- عنوان -->
+          <span class="hint">Clique pour charger</span> <!-- تلميح -->
+        </div> <!-- نهاية الرأس -->
 
-      <button id="jokeBtn">Charger une image</button>
-      <img id="photo" src="" alt="" width="200">
-<!-- img عنصر صورة
-     id="photo" اسم نستخدمه في JavaScript
-     src مكان الصورة. نتركه فارغ بالبداية
-     alt نص بديل إذا لم تحمل الصورة
-     width عرض الصورة -->
-     <p id="photoStatus"></p>
-<!-- مكان لعرض حالة تحميل أو خطأ -->
+        <button id="jokeBtn" class="btn-secondary">Charger une image</button> <!-- زر -->
+        <div class="photo-wrap"> <!-- إطار -->
+          <img id="photo" src="" alt="" /> <!-- صورة -->
+        </div> <!-- نهاية الإطار -->
+        <p id="photoStatus" class="status"></p> <!-- حالة -->
+      </section> <!-- نهاية api -->
 
+      <nav class="links"> <!-- روابط -->
+        <a class="calc-link" href="calculator.html">Calculatrice</a> <!-- رابط -->
+      </nav> <!-- نهاية الروابط -->
 
+      <footer class="footer"> <!-- فوتر -->
+        <span></span> <!-- نص -->
+      </footer> <!-- نهاية الفوتر -->
 
-    </div>
-<a class="calc-link" href="calculator.html"> Calculatrice</a>
-<!-- زر رابط ينقلك لصفحة calculator.html -->
-    <script src="script.js"></script>
-  </body>
-</html>
+    </main> <!-- نهاية main -->
+
+    <script src="script.js"></script> <!-- ربط JS -->
+  </body> <!-- نهاية body -->
+</html> <!-- نهاية html -->
