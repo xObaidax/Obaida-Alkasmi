@@ -452,3 +452,14 @@ li button{
   .card{ padding:14px; } /* مسافة */
   .api img{ height:200px; } /* ارتفاع */
 } /* نهاية */
+
+.calc-btn.op[data-v="="]{
+  grid-column: 4; /* العمود الرابع */
+}
+
+/* إصلاح مكان زر = */
+.calc-page .calc-btn.zero{
+  grid-column: span 1; /* خلي 0 ليس عريض */
+  text-align: center; /* وسط */
+  padding-left: 0; /* إزالة مسافة اليسار */
+} /* نهاية */

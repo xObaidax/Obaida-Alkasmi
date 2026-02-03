@@ -92,7 +92,7 @@ function loadPhoto(){ /* دالة */
   photo.src = url; /* وضع الرابط */
 
   photo.onload = () => { /* نجاح */
-    photoStatus.textContent = "OK"; /* حالة */
+    photoStatus.textContent = ""; /* حالة */
   }; /* نهاية */
 
   photo.onerror = () => { /* فشل */

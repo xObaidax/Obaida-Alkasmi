@@ -96,7 +96,7 @@ function compute(){ /* يساوي */
     show(rText, expr); /* عرض النتيجة مع العملية في mini */
     expr = rText; /* حفظ النتيجة */
     lastWasResult = true; /* علامة */
-    setTip("OK"); /* حالة */
+    setTip("ok"); /* حالة */
   }catch(e){ /* خطأ */
     expr = ""; /* تصفير */
     lastWasResult = false; /* تصفير */
@@ -135,4 +135,4 @@ for(const btn of buttons){ /* حلقة */
 } /* نهاية */
 
 show("0","0"); /* تهيئة */
-setTip("Prêt"); /* تهيئة */
+setTip("𝓞𝓑𝓐𝓘𝓓𝓐"); /* تهيئة */
